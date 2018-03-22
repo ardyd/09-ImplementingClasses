@@ -6,6 +6,8 @@ Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
          their colleagues and David Ardy.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
+import math
+
 
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -72,6 +74,12 @@ class Point(object):
     def get_number_of_moves_made(self):
         return self.moves
 
+    def get_distance_from(self, point):
+        dx = self.x - point.x
+        dy = self.y - point.y
+        r = math.sqrt((dx**2)+(dy**2))
+        return r
+
 
 def run_test_init():
     """
@@ -120,7 +128,7 @@ def run_test_init():
         print('Actual for p2:  ', p2.x, p2.y)
     """
     # ------------------------------------------------------------------
-    # TODO: 3.
+    # DONE: 3.
     #   a. Read the above specification of the   __init__   method.
     #        Do NOT proceed until you understand WHAT it should do
     #        (but not necessarily HOW it will do it).
@@ -211,7 +219,7 @@ def run_test_repr():
         print('Actual for p2:  ', p2)
     """
     # ------------------------------------------------------------------
-    # TODO: 4.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 4.  Follow the same instructions as in TO-DO 3 above,
     #           but for the  __repr__  method specified above.
     # ------------------------------------------------------------------
     print()
@@ -291,7 +299,7 @@ def run_test_clone():
         print('Actual for p3:  ', p3)
    """
     # ------------------------------------------------------------------
-    # TODO: 5.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 5.  Follow the same instructions as in TO-DO 3 above,
     #           but for the  clone  method specified above.
     # ------------------------------------------------------------------
     print()
@@ -388,7 +396,7 @@ def run_test_move_to():
             print('*** FAILED: This method should have had no value returned! ***')
     """
     # ------------------------------------------------------------------
-    # TODO: 6.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 6.  Follow the same instructions as in TO-DO 3 above,
     #           but for the  move_to  method specified above.
     # ------------------------------------------------------------------
     print()
@@ -425,6 +433,8 @@ def run_test_move_to():
     print('Actual for p1:  ', p1)
     print('Expected for p2: Point(0, 222)')
     print('Actual for p2:  ', p2)
+    if check_has_no_return is not None:
+        print('*** FAILED: This method should have had no value returned! ***')
 
 
 def run_test_move_by():
@@ -480,7 +490,7 @@ def run_test_move_by():
             print('*** FAILED: This method should have had no value returned! ***')
     """
     # ------------------------------------------------------------------
-    # TODO: 7.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 7.  Follow the same instructions as in TO-DO 3 above,
     #           but for the  move_by  method specified above.
     # ------------------------------------------------------------------
     print()
@@ -586,7 +596,7 @@ def run_test_get_number_of_moves_made():
         print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
     """
     # ------------------------------------------------------------------
-    # TODO: 8.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 8.  Follow the same instructions as in TO-DO 3 above,
     #    but for the  get_number_of_moves_made  method specified above.
     # ------------------------------------------------------------------
     print()
@@ -702,13 +712,52 @@ def run_test_get_distance_from():
         print('Actual   p2 to p4:', p2.get_distance_from(p4))
     """
     # ------------------------------------------------------------------
-    # TODO: 9.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 9.  Follow the same instructions as in TO-DO 3 above,
     #    but for the  get_distance_from  method specified above.
     # ------------------------------------------------------------------
     print()
     print('-----------------------------------------------------------')
     print('Testing the  get_distance_from  method of the Point class.')
     print('-----------------------------------------------------------')
+
+    p1 = Point(1, 5)
+    p2 = Point(10, 5)
+    p3 = Point(13, 9)
+
+    print()
+    print('Expected p1 to p2: 9.0')
+    print('Actual   p1 to p2:', p1.get_distance_from(p2))
+
+    print()
+    print('Expected p2 to p3: 5.0')
+    print('Actual   p2 to p3:', p2.get_distance_from(p3))
+    print('Expected p3 to p2: 5.0')
+    print('Actual   p3 to p2:', p3.get_distance_from(p2))
+
+    print()
+    print('Expected p1 to p3: about 12.65')
+    print('Actual   p1 to p3:', p1.get_distance_from(p3))
+    print('Expected p3 to p1: about 12.65')
+    print('Actual   p3 to p1:', p3.get_distance_from(p1))
+
+    print()
+    print('Expected p1 to p1: 0.0')
+    print('Actual   p1 to p1:', p1.get_distance_from(p1))
+    print('Expected p2 to p2: 0.0')
+    print('Actual   p2 to p2:', p2.get_distance_from(p2))
+    print('Expected p3 to p3: 0.0')
+    print('Actual   p3 to p3:', p3.get_distance_from(p3))
+
+    p4 = p1.clone()
+    print()
+    print('Expected p1 to p4: 0.0')
+    print('Actual   p1 to p4:', p1.get_distance_from(p4))
+    print('Expected p4 to p1: 0.0')
+    print('Actual   p4 to p1:', p4.get_distance_from(p1))
+    print('Expected p4 to p2: 9.0')
+    print('Actual   p4 to p2:', p4.get_distance_from(p2))
+    print('Expected p2 to p4: 9.0')
+    print('Actual   p2 to p4:', p2.get_distance_from(p4))
 
 
 def run_test_get_distance_from_start():
